@@ -1,12 +1,20 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
  * Get all of the items on the shelf
  */
-router.get('/', (req, res) => {
-    res.sendStatus(200); // For testing only, can be removed
+router.get('/', rejectUnauthenticated, (req, res) => {
+    queryText = `SELECT "description", "image_url", "user"."username" FROM "item" JOIN "user" ON "item"."user_id"="user"."id";`
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows)
+        }).catch((err) => {
+            console.log('error with get request:', err);
+            res.sendStaus(500);
+        });
 });
 
 
