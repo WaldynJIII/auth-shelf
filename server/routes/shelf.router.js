@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
         pool.query(queryText, queryValues)
             .then(() => { res.sendStatus(201); })
             .catch((err) => {
-                console.log('Error completing SELECT user query', err);
+                console.log('Error completing POST user query', err);
                 res.sendStatus(500);
             });
 });
