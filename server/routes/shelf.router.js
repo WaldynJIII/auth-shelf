@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
                     VALUES ($1, $2, $3)`;
         const queryValues = [
             newUser.description,
-            newUser.image_url,
+            newUser.image,
             newUser.user_id,
         ];
         pool.query(queryText, queryValues)
