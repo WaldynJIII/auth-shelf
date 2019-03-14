@@ -15,11 +15,11 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
         const newUser = req.body;
-        const queryText = `INSERT INTO "user" ( "description", "image",  "user_id")
+        const queryText = `INSERT INTO "item" ( "description", "image_url",  "user_id")
                     VALUES ($1, $2, $3)`;
         const queryValues = [
             newUser.description,
-            newUser.image,
+            newUser.image_url,
             newUser.user_id,
         ];
         pool.query(queryText, queryValues)
