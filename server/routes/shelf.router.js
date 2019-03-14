@@ -14,7 +14,20 @@ router.get('/', (req, res) => {
  * Add an item for the logged in user to the shelf
  */
 router.post('/', (req, res) => {
-
+        const newUser = req.body;
+        const queryText = `INSERT INTO "user" ( "description", "image",  "user_id")
+                    VALUES ($1, $2, $3)`;
+        const queryValues = [
+            newUser.description,
+            newUser.image,
+            newUser.user_id,
+        ];
+        pool.query(queryText, queryValues)
+            .then(() => { res.sendStatus(201); })
+            .catch((err) => {
+                console.log('Error completing SELECT user query', err);
+                res.sendStatus(500);
+            });
 });
 
 
