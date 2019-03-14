@@ -4,7 +4,7 @@ function* formSaga() {
     
     yield takeLatest('POST_ITEM', formPost);
 }
-function* formPost(){
+function* formPost(action){
     try {
         yield axios.post('/api/shelf', action.payload);
         alert("It Posted")
