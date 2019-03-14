@@ -6,9 +6,35 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component{
-  state={}
- render(){
+  state={
+    formData:{
+      description: '',
+      image: '',
+      user_id: this.props.user.id
+    }
+  }
+  handleChangeFor =(key)=>(event)=>{
+    this.setState({
+      ...this.state,
+      formData:{...this.state.formData,
+      [key]: event.target.value,
+    }
+    })
+  }
+  handleSubmit=(event)=>{
+    event.preventDefault();
+    this.props.dispatch({type: 'POST_ITEM', payload: this.state.formData})
+    this.setState({
+      ...this.state,
+      formData:{
+description:'',
+image: '',
+      }
+    })
+  }
 
+ render(){
+console.log(this.state.formData)
  return(
   <div>
     <h1 id="welcome">
@@ -18,8 +44,8 @@ class UserPage extends Component{
     <LogOutButton className="log-in" />
     <form onSubmit={this.handleSubmit}>
 <label>Item</label>
-<input type='text'placeholder='description'/>
-<input type='text'placeholder='image'/>
+<input type='text'placeholder='description' onChange={this.handleChangeFor('description')}/>
+       <input type='text' placeholder='image' onChange={this.handleChangeFor('image')}/>
 <br></br>
          <button type="submit">Add Guest</button>
 </form>
