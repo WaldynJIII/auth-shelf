@@ -24,10 +24,17 @@ class UserPage extends Component{
   handleSubmit=(event)=>{
     event.preventDefault();
     this.props.dispatch({type: 'POST_ITEM', payload: this.state.formData})
+    this.setState({
+      ...this.state,
+      formData:{
+description:'',
+image: '',
+      }
+    })
   }
 
  render(){
-
+console.log(this.state.formData)
  return(
   <div>
     <h1 id="welcome">
