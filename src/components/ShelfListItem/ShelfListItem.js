@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import './ShelfListItem.css';
-
+import { connect } from 'react-redux';
 
 class ShelfListItem extends Component {
     // Renders the list of animals
+    removeFromList = (event) => {
+        console.log(event.target.value )
+        this.props.dispatch({ type: 'REMOVE', payload: event.target.value })
+    }
     render() {
+        console.log(this.props.item)
         return (
             <tr className="shelf-item">
                 <td>{this.props.item.description}</td>
@@ -15,10 +20,14 @@ class ShelfListItem extends Component {
                 </td>
                     
                 <td>{this.props.item.username}</td>
-                <td><button>Delete</button></td>
+                <td><button value={this.props.item.id} onClick={this.removeFromList}>Delete</button></td>
             </tr>
         );
     }
 }
 
-export default ShelfListItem;
+const mapStateToProps = reduxState => (
+    reduxState
+);
+
+export default connect(mapStateToProps)(ShelfListItem);
