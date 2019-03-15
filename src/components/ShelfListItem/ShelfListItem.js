@@ -8,7 +8,12 @@ class ShelfListItem extends Component {
         return (
             <tr className="shelf-item">
                 <td>{this.props.item.description}</td>
-                <td><img src="/images/default_image.png"/></td>
+                <td>
+                    { this.props.item.image_url ? <img src={this.props.item.image_url} /> :
+                        <img src="/images/default_image.png" alt="an image of a house on a hill"/>
+                    }
+                </td>
+                    
                 <td>{this.props.item.username}</td>
                 <td><button>Delete</button></td>
             </tr>
