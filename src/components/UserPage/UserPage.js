@@ -26,7 +26,7 @@ class UserPage extends Component{
     this.props.dispatch({type: 'POST_ITEM', payload: this.state.formData})
     this.setState({
       ...this.state,
-      formData:{
+      formData:{...this.state.formData,
 description:'',
 image: '',
       }
@@ -44,8 +44,8 @@ console.log(this.state.formData)
     <LogOutButton className="log-in" />
     <form onSubmit={this.handleSubmit}>
 <label>Item</label>
-<input type='text'placeholder='description' onChange={this.handleChangeFor('description')}/>
-       <input type='text' placeholder='image' onChange={this.handleChangeFor('image')}/>
+<input type='text'placeholder='description' value={this.state.formData.description} onChange={this.handleChangeFor('description')}/>
+       <input type='text' placeholder='image' value={this.state.formData.image}onChange={this.handleChangeFor('image')}/>
 <br></br>
          <button type="submit">Add Guest</button>
 </form>
