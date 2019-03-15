@@ -47,3 +47,14 @@ input {
     border-bottom:1px solid #444; 
     cursor: pointer;
 }
+
+table {
+    width: 90%;
+    margin: auto;
+}
+
+tr {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #444;
+}
