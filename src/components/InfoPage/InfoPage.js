@@ -13,7 +13,7 @@ componentDidMount(){
   this.props.dispatch({type: 'FETCH_SHELF'})
   
 }
-
+ 
 
 render(){
   console.log(this.props);

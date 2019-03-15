@@ -19,9 +19,24 @@ function* fetchShelf() {
   //   console.log('User get request failed', error);
   // }
 }
+function* removeItem(action){
+  
+    console.log(action.payload)
+    try {
+      yield axios.delete(`api/shelf/${action.payload}`)
+      alert('It worked')
+      yield put({ type: 'FETCH_SHELF' })
+    } catch (error) {
+      console.log('DELETE ', error)
+      alert('it didnt')
+    }
+
+  }
+
 
 function* shelfSaga() {
   yield takeLatest('FETCH_SHELF', fetchShelf);
+  yield takeLatest('REMOVE', removeItem);
 }
 
 export default shelfSaga;
